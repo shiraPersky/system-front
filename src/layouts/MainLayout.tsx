@@ -2,7 +2,7 @@ import "./MainLayout.css";
 
 import { Outlet} from "react-router-dom";
 
-import SideBar from "./SideBar";
+import SideBar from "./Sidebar";
 
 export default function MainLayout(){
     return(
@@ -12,6 +12,5 @@ export default function MainLayout(){
                     <Outlet/>
                 </main>
         </div>
-
     );
 }

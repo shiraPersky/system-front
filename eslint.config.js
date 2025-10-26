@@ -57,6 +57,9 @@ export default defineConfig([
     },
     settings: {
       react: { version: "detect" },
+      "import/resolver": {
+        typescript: {},
+      },
     },
     rules: {
       //Core
@@ -76,7 +79,13 @@ export default defineConfig([
       // Import
       // ...importPlugin.configs.recommended.rules,
       // ...promise.configs.recommended.rules,
-      "import/no-extraneous-dependencies": "error",
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          devDependencies: false,
+        },
+      ],
+
       "import/no-duplicates": "error",
 
       // // Patterns
