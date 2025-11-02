@@ -1,0 +1,61 @@
+.stage-section {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+/* Header bar for each stage */
+.stage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--stage-color, #3b82f6); /* ברירת מחדל */
+}
+
+/* Header details */
+.stage-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.stage-meta button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+}
+
+/* Job list under each stage */
+.jobs-list {
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #fafafa;
+}
+
+/* different color for each stage*/
+.stage-section:nth-child(1) .stage-header { background-color: #3b82f6; } /* כחול */
+.stage-section:nth-child(2) .stage-header { background-color: #f59e0b; } /* כתום */
+.stage-section:nth-child(3) .stage-header { background-color: #10b981; } /* ירוק */
+.stage-section:nth-child(4) .stage-header { background-color: #8b5cf6; } /* סגול */
+.stage-section:nth-child(5) .stage-header { background-color: #ec4899; } /* ורוד */
+.stage-section:nth-child(6) .stage-header { background-color: #14b8a6; } /* טורקיז */
+
+/*If its more then 6 stages they will repeat in loop*/
+.stage-section:nth-child(7n+1) .stage-header { background-color: #3b82f6; }
+.stage-section:nth-child(7n+2) .stage-header { background-color: #f59e0b; }
+.stage-section:nth-child(7n+3) .stage-header { background-color: #10b981; }
+.stage-section:nth-child(7n+4) .stage-header { background-color: #8b5cf6; }
+.stage-section:nth-child(7n+5) .stage-header { background-color: #ec4899; }
+.stage-section:nth-child(7n+6) .stage-header { background-color: #14b8a6; }

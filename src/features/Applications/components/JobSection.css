@@ -1,0 +1,25 @@
+.job-title {
+  font-weight: 600;
+  color: #111827;
+}
+
+.job-company {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.stat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.date {
+  color: #9ca3af;
+}
+
+.conclusion {
+  font-weight: 600;
+  margin-top: 0.5rem;
+  color: #16a34a;
+}

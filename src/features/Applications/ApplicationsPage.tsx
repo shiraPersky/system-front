@@ -1,3 +1,5 @@
+import "./ApplicationsPage.css";
+
 import React from "react";
 
 import StageSection from "./components/StageSection";
