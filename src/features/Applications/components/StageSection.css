@@ -1,3 +1,31 @@
+.add-job-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.add-job-btn {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px dashed #d1d5db; 
+  border-radius: 8px;
+  background-color: #f9fafb;
+  color: #4f46e5; 
+  font-size: 0.95rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-job-btn:hover {
+  background-color: #eef2ff; 
+  border-color: #a5b4fc;
+  color: #3730a3;
+}
+
+
+
 .stage-section {
   border-radius: 8px;
   overflow: hidden;

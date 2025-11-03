@@ -43,19 +43,22 @@ export default function ApplicationsPage(){
   ];
     return(
      <div  className="applications-page">
-      <h1>Request Management</h1>
-      <div className="stages-container">
-        {/* Render the list of stages */}
-          {stages.map((stage, index) => (
-            <StageSection 
-              key = {index} 
-              stageName={stage.stageName}
-              numOfJobs={stage.numOfJobs}
-              jobs={stage.jobs}
-            />
-          ))}
-    </div>
-       <button className="add-stage-btn">+ Add Stage</button>
-    </div>
+      <div  className="page-header">
+        <h1>Request Management</h1>
+      </div>
+
+        <div className="stages-container">
+          {/* Render the list of stages */}
+            {stages.map((stage, index) => (
+              <StageSection 
+                key = {index} 
+                stageName={stage.stageName}
+                numOfJobs={stage.numOfJobs}
+                jobs={stage.jobs}
+              />
+            ))}
+      </div>
+        <button className="add-stage-btn">+ Add Stage</button>
+      </div>
     );
 };

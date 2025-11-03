@@ -1,4 +1,12 @@
-/* Page container */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+
+
 .applications-page {
   padding: 2rem;
   background-color: #f5f7fa;

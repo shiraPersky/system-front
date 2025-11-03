@@ -33,6 +33,10 @@ export default function StageSection({stageName, numOfJobs, jobs }: StageIntervi
             <JobSection key = {idx} {...job} />
           ))}
         </div>
+
+        <div className="add-job-container">
+          <button className="add-job-btn">+ Add Job Application</button>
+        </div>
     </div>
   );
 }
