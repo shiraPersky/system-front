@@ -1,0 +1,9 @@
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1rem;   
+  row-gap: 1rem;      
+  width: 105.5%;
+  margin-bottom: 4rem; 
+  box-sizing: border-box;
+}

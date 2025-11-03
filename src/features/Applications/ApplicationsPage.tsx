@@ -1,3 +1,4 @@
+import "../PageContainer.css";
 import "./ApplicationsPage.css";
 
 import React from "react";
@@ -41,13 +42,10 @@ export default function ApplicationsPage(){
     },
   ];
     return(
-     <div>
+     <div  className="applications-page">
       <h1>Request Management</h1>
-
-      <div>
-        
+      <div className="stages-container">
         {/* Render the list of stages */}
-        
           {stages.map((stage, index) => (
             <StageSection 
               key = {index} 
@@ -57,8 +55,7 @@ export default function ApplicationsPage(){
             />
           ))}
     </div>
-
-      {/* To do:add stage*/}
+       <button className="add-stage-btn">+ Add Stage</button>
     </div>
     );
 };

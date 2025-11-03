@@ -1,6 +1,5 @@
 import "./StatsCard.css";
 
-import Box from '@mui/material/Box';
 import Typography from "@mui/material/Typography";
 import { type ReactNode } from "react";
 
@@ -12,14 +11,10 @@ type StatsCardProps = {
 
 export default function StatsCard({title,value,icon}: StatsCardProps) {
     return(
-      <Box className = "stat-card">
-        <Box className = "stat-card-content">
+      <div className = "stat-card">
             <Typography className = "stat-card-title">{title}</Typography>
-            <Typography className = "stat-card-title">{value}</Typography>
-        </Box>
-        <Box className = "stat-card-icon">
-            {icon}
-        </Box>
-      </Box>
+            <Typography className = "stat-card-value">{value}</Typography>
+            <div className="stat-card-icon">{icon}</div>
+      </div>
   ); 
 }

@@ -17,7 +17,7 @@ type StageInterviewListProps = {
 
 export default function StageSection({stageName, numOfJobs, jobs }: StageInterviewListProps) {
   return (
-    <div className= "satge-section">
+    <div className= "stage-section">
          <Box className = "stage-header">
             <Typography variant="h6">{stageName}</Typography>
             <div className = "stage-meta">

@@ -1,3 +1,5 @@
+import "./ActivitySummary.css";
+
 type InterviewItem = {
     id: string;  
     role: string;
@@ -11,12 +13,13 @@ type InterviewListProps = {
 export default function InterviewList({Interviews}:InterviewListProps) {
   return (
     <div>
-        <h2>Interviews this week</h2>
+        <h3>Interviews this week</h3>
         {Interviews.map((item) => (
-          <p key ={item.id}>
-            {item.role} - {item.company}
-          </p>
-        ))}
+        <div className="interview-row" key={item.id}>
+          <span>{item.role}</span>
+          <span>{item.company}</span>
+        </div>
+      ))}
     </div>
   );
 }

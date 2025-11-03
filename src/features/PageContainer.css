@@ -1,0 +1,13 @@
+.page-container {
+  background-color: #f5f7fa;
+  min-height: 100vh;
+  padding: 2rem 3rem;
+  font-family: "Inter", sans-serif;
+}
+
+.page-container h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1.5rem;
+}
