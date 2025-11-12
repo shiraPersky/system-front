@@ -1,31 +1,24 @@
-.stat-card {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 1rem 1.25rem;
+.job-info {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-.job-title {
-  font-weight: 600;
-  color: #111827;
+.job-actions {
+  display: flex;
+  gap: 0.5rem;
 }
 
-.job-company {
-  margin-left: 4px;
+.edit-icon,
+.delete-icon {
+  cursor: pointer;
   color: #6b7280;
-  font-size: 0.9rem;
+  transition: color 0.2s ease;
 }
 
-.date {
-  color: #9ca3af;
+.edit-icon:hover {
+  color: #2563eb;
 }
 
-.conclusion {
-  font-weight: 500;
-  color: #16a34a;
-  margin-top: 0.3rem;
+.delete-icon:hover {
+  color: #dc2626;
 }
