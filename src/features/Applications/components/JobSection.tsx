@@ -5,6 +5,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import Box from '@mui/material/Box';
 import Typography from "@mui/material/Typography";
 
+
 type JobItemProps = {
     id: string;    
     title: string;  

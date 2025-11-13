@@ -73,16 +73,21 @@ import "./StageSection.css";
 import { Draggable,Droppable } from "@hello-pangea/dnd";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import {useState} from "react";
 
+import AddJobModal from "./AddJobModal";
 import JobSection, { type JobItem } from "./JobSection";
 
 // Props type for each stage section
 type StageProps = {
   stageName: string;
   jobs: JobItem[];
+  onAddJob: (_stageName: string, _job: JobItem) => void;
 };
 
-export default function StageSection({ stageName, jobs }: StageProps) {
+export default function StageSection({ stageName, jobs ,onAddJob}: StageProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   return (
     // Each stage is a Droppable area (destination for dragged jobs)
     <Droppable droppableId={stageName}>
@@ -122,7 +127,20 @@ export default function StageSection({ stageName, jobs }: StageProps) {
             {/* Placeholder required by the DnD library to maintain layout while dragging */}
             {provided.placeholder}
           </div>
-        </div>
+          <div className="add-job-container">
+             <button className="add-job-btn" onClick={() => setIsModalOpen(true)}>
+                + Add Job Application
+              </button>
+           </div>
+
+           <AddJobModal
+              isOpen ={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+              onAddJob={onAddJob}
+              stageName={stageName}
+              />
+            
+            </div>
       )}
     </Droppable>
   );

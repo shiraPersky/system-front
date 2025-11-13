@@ -88,6 +88,11 @@ export default defineConfig([
 
       "import/no-duplicates": "error",
 
+      "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^_" },
+    ],
+
       // // Patterns
       // ...sonarjs.configs.recommended.rules,
       // ...unicorn.configs.recommended.rules,

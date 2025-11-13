@@ -161,6 +161,15 @@ export default function ApplicationsPage() {
 
     // Update state
     setStages(newStages);
+    };
+    const handleAddStage = () => {
+    const newStage = {
+      stageName: "NEW STAGE",
+      jobs: [],
+    };
+
+    // Append the new stage to the existing list
+    setStages((prev) => [...prev, newStage]);
   };
 
   return (
@@ -178,13 +187,20 @@ export default function ApplicationsPage() {
               key={stage.stageName}
               stageName={stage.stageName}
               jobs={stage.jobs}
+              onAddJob={(stageName, newJob) =>{
+                setStages((prev) =>
+                prev.map((s) =>
+                s.stageName === stageName ? {...s, jobs: [...s.jobs, newJob]}:s));
+              }}
             />
           ))}
         </div>
       </DragDropContext>
 
       {/* Button to add new stages (not functional yet) */}
-      <button className="add-stage-btn">+ Add Stage</button>
+      <button className="add-stage-btn" onClick={handleAddStage}>+ Add Stage</button>
     </div>
   );
+  
 }
+
