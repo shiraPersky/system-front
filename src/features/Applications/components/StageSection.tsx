@@ -69,11 +69,12 @@
 // // }
 
 import "./StageSection.css";
-
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import { Draggable,Droppable } from "@hello-pangea/dnd";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 import AddJobModal from "./AddJobModal";
 import JobSection, { type JobItem } from "./JobSection";
@@ -85,12 +86,31 @@ type StageProps = {
   onAddJob: (_stageName: string, _job: JobItem) => void;
   onEditJob: (stageName: string, job: JobItem) => void;
   onDeleteJob: (stageName: string, id: string) => void;
+  onEditStage: (oldName: string, newName: string) => void;
+  onDeleteStage: (stageName: string) => void;
 
 };
 
-export default function StageSection({ stageName, jobs ,onAddJob,onEditJob,onDeleteJob,}: StageProps) {
+export default function StageSection({ stageName, jobs ,onAddJob,onEditJob,onDeleteJob,onEditStage,onDeleteStage,}: StageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editJob, setEditJob] = useState<JobItem | null>(null);
+  const [isEditingStage, setIsEditingStage] = useState(false);
+  const [stageTitle, setStageTitle] = useState(stageName);
+
+  useEffect(() => {
+    setStageTitle(stageName);
+  }, [stageName]);
+  
+  const handleStageEdit = () => {
+    setIsEditingStage(true);
+  };
+
+  const handleStageSave = () => {
+    if (stageTitle.trim() && stageTitle !== stageName) {
+      onEditStage(stageName, stageTitle.trim());
+    }
+    setIsEditingStage(false);
+  };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -108,7 +128,35 @@ export default function StageSection({ stageName, jobs ,onAddJob,onEditJob,onDel
         >
           {/* Stage header with title and job count */}
           <Box className="stage-header">
-            <Typography variant="h6">{stageName}</Typography>
+            <div style={{display: "flex", alignItems: "center", gap: "0.5rem"}}>
+              {isEditingStage? (
+                <input
+                  className="stage-title-input"
+                  value = {stageTitle}
+                  onChange={(e) => setStageTitle(e.target.value)}
+                  onBlur={handleStageSave}
+                  onKeyDown={(e) => {
+                    if(e.key === "Enter") { e.preventDefault(); handleStageSave();}
+                    if(e.key === "Escape") {setStageTitle(stageName); setIsEditingStage(false); }
+                  }}
+                  autoFocus
+                  />
+              ) : (
+                <Typography variant="h6">{stageTitle}</Typography>
+              )}
+            <div className="stage-icons">
+                <EditIcon
+                  fontSize="small"
+                  className="stage-edit-icon"
+                  onClick={handleStageEdit}
+                />
+                <DeleteIcon
+                  fontSize="small"
+                  className="stage-delete-icon"
+                  onClick={() => onDeleteStage(stageName)}
+                />
+              </div>
+            </div>
             <Typography variant="body2">{jobs.length} jobs</Typography>
           </Box>
 

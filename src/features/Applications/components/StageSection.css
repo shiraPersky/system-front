@@ -77,6 +77,35 @@
   padding: 1rem 1.5rem;
 }
 
+.stage-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.stage-edit-icon,
+.stage-delete-icon {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.stage-edit-icon:hover {
+  color: #2563eb;
+}
+
+.stage-delete-icon:hover {
+  color: #dc2626;
+}
+
+.stage-title-input {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+}
 
 /* different color for each stage*/
 .stage-section:nth-child(1) .stage-header { background-color: #3b82f6; } 

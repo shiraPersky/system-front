@@ -10,10 +10,10 @@ import StatsCard from "./StatsCard";
 export default function StatsGrid() {
   return (
     <div className="stats-grid">
-      <StatsCard title = "In Progress" value = "4" icon = {<AccessTimeFilledRoundedIcon/>}/>
-      <StatsCard title = "Total Applications" value = "6" icon = {<FactCheckIcon/>}/>
-      <StatsCard title = "Offers" value = "1" icon = {<ContentPasteIcon/>}/>
-      <StatsCard title = "Intreviews" value = "3" icon = {<FaceIcon/>}/>
+      <StatsCard title = "In Progress" value = {4} icon = {<AccessTimeFilledRoundedIcon/>}/>
+      <StatsCard title = "Total Applications" value = {6} icon = {<FactCheckIcon/>}/>
+      <StatsCard title = "Offers" value = {1} icon = {<ContentPasteIcon/>}/>
+      <StatsCard title = "Intreviews" value = {3} icon = {<FaceIcon/>}/>
     </div>
   );
 }

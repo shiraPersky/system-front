@@ -215,6 +215,18 @@ export default function ApplicationsPage() {
                 )
               );
             }}
+            onEditStage={(oldName, newName) => {
+            setStages((prev) =>
+              prev.map((s) =>
+                s.stageName === oldName
+                  ? { ...s, stageName: newName } 
+                  : s
+              )
+            );
+          }}
+          onDeleteStage={(stageName) => {
+            setStages((prev) => prev.filter((s) => s.stageName !== stageName));
+          }}
             />
           ))}
         </div>
