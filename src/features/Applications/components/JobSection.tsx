@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from "@mui/material/Typography";
 
 
-type JobItemProps = {
+export type JobItem = {
     id: string;    
     title: string;  
     company: string;
@@ -14,10 +14,14 @@ type JobItemProps = {
     summary: string;
     conclusion: string;
 };
-export type JobItem = JobItemProps;
+type JobSectionProps  = JobItem & {
+  onEdit: (job: JobItem) => void;
+  onDelete: (id: string) => void;
+};
 
 
-export default function JobSection({title,company, date, summary, conclusion }: JobItemProps) {
+
+export default function JobSection({id, title,company, date, summary, conclusion, onEdit, onDelete, }: JobSectionProps) {
     return(
       <Box className = "stat-card">
         <div className="stat-card-header">
@@ -26,8 +30,8 @@ export default function JobSection({title,company, date, summary, conclusion }: 
                 <Typography variant="subtitle2" className= "job-company">{company}</Typography>
         </div>
         <div className="job-actions">
-          <EditIcon fontSize="small" className="edit-icon" />
-          <DeleteIcon fontSize="small" className="delete-icon" />
+          <EditIcon fontSize="small" className="edit-icon" onClick={() => onEdit({id, title,company, date, summary, conclusion})} />
+          <DeleteIcon fontSize="small" className="delete-icon" onClick={() => onDelete(id)}/>
         </div>
       </div>
         <div className="stat-card-meta">

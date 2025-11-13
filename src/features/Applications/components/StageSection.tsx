@@ -83,10 +83,19 @@ type StageProps = {
   stageName: string;
   jobs: JobItem[];
   onAddJob: (_stageName: string, _job: JobItem) => void;
+  onEditJob: (stageName: string, job: JobItem) => void;
+  onDeleteJob: (stageName: string, id: string) => void;
+
 };
 
-export default function StageSection({ stageName, jobs ,onAddJob}: StageProps) {
+export default function StageSection({ stageName, jobs ,onAddJob,onEditJob,onDeleteJob,}: StageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editJob, setEditJob] = useState<JobItem | null>(null);
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditJob(null);
+  };
   
   return (
     // Each stage is a Droppable area (destination for dragged jobs)
@@ -118,7 +127,13 @@ export default function StageSection({ stageName, jobs ,onAddJob}: StageProps) {
                     {...provided.dragHandleProps}
                   >
                     {/* Render job card component */}
-                    <JobSection {...job} />
+                    <JobSection {...job}
+                    onEdit={(j) => {
+                        setEditJob(j);
+                        setIsModalOpen(true);
+                      }}
+                      onDelete={(id) => onDeleteJob(stageName, id)}
+                    />
                   </div>
                 )}
               </Draggable>
@@ -128,16 +143,21 @@ export default function StageSection({ stageName, jobs ,onAddJob}: StageProps) {
             {provided.placeholder}
           </div>
           <div className="add-job-container">
-             <button className="add-job-btn" onClick={() => setIsModalOpen(true)}>
+             <button className="add-job-btn" onClick={() => {
+                setEditJob(null);
+                setIsModalOpen(true);
+              }}
+              >
                 + Add Job Application
               </button>
            </div>
 
            <AddJobModal
               isOpen ={isModalOpen}
-              onClose={() => setIsModalOpen(false)}
-              onAddJob={onAddJob}
+              onClose={handleCloseModal}
+              onAddJob={editJob? onEditJob: onAddJob}
               stageName={stageName}
+              existingJob={editJob}
               />
             
             </div>

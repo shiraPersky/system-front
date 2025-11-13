@@ -1,6 +1,6 @@
 import "./AddJobModal.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { type JobItem } from "./JobSection";
 
@@ -9,6 +9,8 @@ type AddModalProps = {
   onClose: () => void;
   onAddJob: (_stageName: string, _job: JobItem) => void;
   stageName: string;
+  existingJob?: JobItem | null;
+
 };
 
 export default function AddJobModal({
@@ -16,17 +18,27 @@ export default function AddJobModal({
   onClose,
   onAddJob,
   stageName,
+  existingJob,
 }: AddModalProps) {
-  const [title, setTitle] = useState("");
-  const [company, setCompany] = useState("");
-  const [date, setDate] = useState("");
-  const [summary, setSummary] = useState("");
-  const [conclusion, setConclusion] = useState("");
+  
+    const [title, setTitle] = useState(existingJob?.title ?? "");
+  const [company, setCompany] = useState(existingJob?.company ?? "");
+  const [date, setDate] = useState(existingJob?.date ?? "");
+  const [summary, setSummary] = useState(existingJob?.summary ?? "");
+  const [conclusion, setConclusion] = useState(existingJob?.conclusion ?? "");
+
+  useEffect(() => {
+    setTitle(existingJob?.title ?? "");
+    setCompany(existingJob?.company ?? "");
+    setDate(existingJob?.date ?? "");
+    setSummary(existingJob?.summary ?? "");
+    setConclusion(existingJob?.conclusion ?? "");
+  }, [existingJob]);
 
   const handleSubmit = () => {
     if (!title || !company) return;
     const newJob: JobItem = {
-      id: `${stageName}-${Date.now()}`,
+      id: existingJob ? existingJob.id : `${stageName}-${Date.now()}`,
       title,
       company,
       date,
