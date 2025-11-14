@@ -21,24 +21,33 @@ type JobSectionProps  = JobItem & {
 
 
 
-export default function JobSection({id, title,company, date, summary, conclusion, onEdit, onDelete, }: JobSectionProps) {
+export default function JobSection({id, title,company, date, summary, conclusion, onEdit, onDelete,}: JobSectionProps) {
     return(
-      <Box className = "stat-card">
-        <div className="stat-card-header">
-            <div className="job-info">
+      <Box className = "job-card">
+        <div className="job-header">
+            <div className="job-main">
                 <Typography variant="subtitle1" className= "job-title">{title}</Typography>
                 <Typography variant="subtitle2" className= "job-company">{company}</Typography>
-        </div>
+        
         <div className="job-actions">
           <EditIcon fontSize="small" className="edit-icon" onClick={() => onEdit({id, title,company, date, summary, conclusion})} />
           <DeleteIcon fontSize="small" className="delete-icon" onClick={() => onDelete(id)}/>
         </div>
       </div>
-        <div className="stat-card-meta">
-            <Typography variant="body2" className= "date">{date}</Typography>
-            <Typography variant="body2" className= "summary">{summary}</Typography>
+        <div className="job-meta">
+            <Typography variant="body2" className= "job-date">{date}</Typography>
         </div>
-            <Typography variant="body2" className= "conclusion">{conclusion}</Typography>
+        </div>
+        <div className="job-summary-column">
+          <div className="job-summary-item">
+            <span className= "summary-label">Summary:</span>
+            <span className= "summary-text">{summary || "--"}</span>
+          </div>
+          <div className="job-summary-item conclusion">
+            <span className= "summary-label">Conclusion:</span>
+            <span className= "summary-text">{conclusion || "--"}</span>
+          </div> 
+        </div>
       </Box>
   ); 
 }

@@ -85,9 +85,11 @@ import "../PageContainer.css";
 import "./ApplicationsPage.css";
 
 import { DragDropContext, type DropResult } from "@hello-pangea/dnd";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import StageSection from "./components/StageSection";
+import HistoryModal from "./components/HistoryModal"; 
+
 
 export default function ApplicationsPage() {
   // Application stages with sample data
@@ -127,7 +129,11 @@ export default function ApplicationsPage() {
       ],
     },
   ]);
+ const [isHistoryOpen, setIsHistoryOpen] = useState(false); 
 
+  //
+  const allJobs = useMemo(() => stages.flatMap((s) => s.jobs), [stages]);
+  
   // Function triggered after a drag-and-drop action ends
   const handleDragEnd = (result: DropResult) => {
     const { source, destination } = result;
@@ -178,6 +184,10 @@ export default function ApplicationsPage() {
         <h1>Request Management</h1>
       </div>
 
+       <button className="view-summaries-btn" onClick={() => setIsHistoryOpen(true)}>
+          📄View All Summaries
+        </button>
+      
       {/* Wrap the drag-and-drop area */}
       <DragDropContext onDragEnd={handleDragEnd}>
         <div className="stages-container">
@@ -187,6 +197,7 @@ export default function ApplicationsPage() {
               key={stage.stageName}
               stageName={stage.stageName}
               jobs={stage.jobs}
+              allJobs={allJobs}
               onAddJob={(stageName, newJob) =>{
                 setStages((prev) =>
                 prev.map((s) =>
@@ -234,6 +245,13 @@ export default function ApplicationsPage() {
 
       {/* Button to add new stages (not functional yet) */}
       <button className="add-stage-btn" onClick={handleAddStage}>+ Add Stage</button>
+
+      <HistoryModal
+        open={isHistoryOpen}
+        onClose={() => setIsHistoryOpen(false)}
+        allJobs={allJobs} 
+      />
+
     </div>
   );
   

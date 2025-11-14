@@ -88,6 +88,8 @@ type StageProps = {
   onDeleteJob: (stageName: string, id: string) => void;
   onEditStage: (oldName: string, newName: string) => void;
   onDeleteStage: (stageName: string) => void;
+  allJobs: JobItem[];
+
 
 };
 
