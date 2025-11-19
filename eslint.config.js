@@ -19,17 +19,11 @@ import eslintConfigPrettier from "eslint-config-prettier/flat";
 
 import { defineConfig } from "eslint/config";
 
-// //Helper function for turn on all the rules on specific plugin
-// const enableAllRules = (name, plugin) => {
-//   const rules = plugin.rules || {};
-//   return Object.fromEntries(
-//     Object.entries(rules).map(([ruleName]) => [`${name}/${ruleName}`, "error"])
-//   );
-// };
 
 export default defineConfig([
   {
     files: ["src/**/*.{js,ts,jsx,tsx}"],
+    ignores: ["dist/**", "build/**", "node_modules/**"],
     languageOptions: {
       parser: tseslint.parser, //to enable to eslint's rules to work on ts files
       parserOptions: {
@@ -64,9 +58,11 @@ export default defineConfig([
     rules: {
       //Core
       ...js.configs.recommended.rules,
+      "no-console": "warn",
 
       // TypeScript
       ...tseslint.configs.recommended.rules,
+
 
       // React
       ...react.configs.recommended.rules,
@@ -77,8 +73,8 @@ export default defineConfig([
       "react/jsx-uses-react": "off",
 
       // Import
-      // ...importPlugin.configs.recommended.rules,
-      // ...promise.configs.recommended.rules,
+      ...importPlugin.configs.recommended.rules,
+      ...promise.configs.recommended.rules,
       "import/no-extraneous-dependencies": [
         "error",
         {
@@ -89,19 +85,22 @@ export default defineConfig([
       "import/no-duplicates": "error",
 
       "@typescript-eslint/no-unused-vars": [
-      "warn",
-      { "argsIgnorePattern": "^_" },
+      "error",
+      { argsIgnorePattern: "^_" ,
+        varsIgnorePattern: "^_",},
     ],
 
-      // // Patterns
-      // ...sonarjs.configs.recommended.rules,
-      // ...unicorn.configs.recommended.rules,
-      // ...regexp.configs.recommended.rules,
-      // ...n.configs.recommended.rules,
+      // Patterns
+      ...sonarjs.configs.recommended.rules,
+      ...unicorn.configs.recommended.rules,
+      "unicorn/filename-case": "off",
+      "unicorn/prevent-abbreviations": "off",
+      ...regexp.configs.recommended.rules,
+      ...n.configs.recommended.rules,
 
-      // // Security
-      // ...noSecrets.configs.recommended.rules,
-      // ...noUnsanitized.configs.recommended.rules,
+      // Security
+      ...noSecrets.configs.recommended.rules,
+      ...noUnsanitized.configs.recommended.rules,
 
       // Sorting
       "simple-import-sort/imports": "error",
