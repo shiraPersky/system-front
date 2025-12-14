@@ -4,8 +4,8 @@ import "./ApplicationsPage.css";
 import { DragDropContext, type DropResult } from "@hello-pangea/dnd";
 import { useMemo, useState } from "react";
 
-import StageSection from "./components/StageSection";
 import HistoryModal from "./components/HistoryModal"; 
+import StageSection from "./components/StageSection";
 
 
 export default function ApplicationsPage() {
@@ -73,7 +73,7 @@ export default function ApplicationsPage() {
     );
 
     // Create a deep copy of the stages array 
-    const newStages = JSON.parse(JSON.stringify(stages));
+    const newStages = structuredClone(stages);
 
     // Remove job from the source stage
     const [movedJob] = newStages[sourceStageIndex].jobs.splice(source.index, 1);
